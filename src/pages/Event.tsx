@@ -1,14 +1,19 @@
+import { useParams } from 'react-router-dom'
 import { Header } from '../comps/Header'
-import { Lesson } from '../comps/Lesson'
 import { Siderbar } from '../comps/Siderbar'
 import { Video } from '../comps/Video'
 
 export const Event = () => {
+  const { slug } = useParams<{slug: string}>()
+
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />
       <main className="flex flex-1">
-        <Video />
+        { slug
+          ? <Video lessonSlug={slug} />
+          : <div className="flex-1" />
+        }
         <Siderbar />
       </main>
     </div>
